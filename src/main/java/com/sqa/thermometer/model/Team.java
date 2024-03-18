@@ -17,8 +17,8 @@ public class Team {
 
     private String teamName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
-    private List<Survey> surveyList;
+    //@OneToMany( mappedBy = "team", cascade = CascadeType.ALL)
+    //private List<Survey> surveyList;
 
 
     public Team(TeamDTO teamDTO) {

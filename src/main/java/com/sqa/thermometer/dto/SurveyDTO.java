@@ -14,14 +14,14 @@ import java.util.List;
 public class SurveyDTO {
     private Integer surveyId;
     //private TeamDTO teamDTO;
-    //private Integer teamId;
+    private Integer teamId;
    // private List<QuestionDTO> questionDTOList;
 
 
     public SurveyDTO(Survey survey){
         this.surveyId = survey.getSurveyId();
        // this.teamId = survey.getTeam().getTeamId();
-
+        this.teamId = survey.getTeam().getTeamId();
       /*  this.questionDTOList = new ArrayList<>();
         survey.getQuestionList().forEach(
                 question -> {

@@ -6,6 +6,7 @@ import com.sqa.thermometer.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.PrimitiveIterator;
 
@@ -20,4 +21,12 @@ public class AnswerService {
     public List<AnswerDTO> findAll(){
         return fabricaAnswerService.createAnswersDTO(answerRepository.findAll()) ;
     }
+
+    public List<AnswerDTO> save(List<AnswerDTO> answerDTOList){
+
+            answerRepository.saveAll(fabricaAnswerService.createAnswers(answerDTOList));
+            return answerDTOList;
+
+    }
+
 }

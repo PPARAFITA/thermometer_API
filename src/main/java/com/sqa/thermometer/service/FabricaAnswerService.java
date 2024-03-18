@@ -29,4 +29,15 @@ public class FabricaAnswerService {
         );
         return answerDTOList;
     }
+
+    public List<Answer> createAnswers(List<AnswerDTO> answerDTOList){
+        List<Answer> answerList = new ArrayList<>();
+
+        answerDTOList.stream().forEach(
+                answerDTO -> {
+                    answerList.add(new Answer(answerDTO));
+                }
+        );
+        return answerList;
+    }
 }

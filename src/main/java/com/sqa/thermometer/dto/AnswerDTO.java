@@ -11,10 +11,12 @@ public class AnswerDTO {
     private Integer answerId;
     private Integer surveyId;
     private Integer questionId;
+    private String valorAnswer;
 
     public AnswerDTO(Answer answer){
-        this.answerId = answer.getAnswerId();
-        this.questionId = answer.getQuestionId();
-        this.surveyId = answer.getSurveyId();
+        this.answerId = answer.getAnswerId().getAnswerId();
+        this.questionId = answer.getQuestion().getQuestionId();
+        this.surveyId = answer.getSurvey().getSurveyId();
+        this.valorAnswer = answer.getValorAnswer();
     }
 }

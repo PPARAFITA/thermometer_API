@@ -18,20 +18,21 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer surveyId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "teamId")//Crea un atributo en la entidad Survey de la BD con este nombre
     private Team team;
 
    /* @ManyToMany(mappedBy = "surveyList")
     private List<Question> questionList;*/
 
-    public Survey(SurveyDTO surveyDTO){
+   public Survey(SurveyDTO surveyDTO){
 
         //TeamService teamService = new TeamService();
 
         this.surveyId = surveyDTO.getSurveyId();
-        //this.team.setTeamId( surveyDTO.getTeamId());
+        //this.team = new Team(surveyDTO.getTeamDTO());
+        this.team.setTeamId( surveyDTO.getTeamId());
         //this.team = surveyDTO.;
        // this.team = new Team(teamService.findById(surveyDTO.getTeamId()));
-    }
+  }
 }

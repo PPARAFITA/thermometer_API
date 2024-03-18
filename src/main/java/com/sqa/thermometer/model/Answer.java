@@ -1,11 +1,9 @@
 package com.sqa.thermometer.model;
 
 import com.sqa.thermometer.dto.AnswerDTO;
+import com.sqa.thermometer.embedded.AnswerId;
 import com.sqa.thermometer.repository.AnswerRepository;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,15 +11,32 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Answer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer answerId;
-    private Integer surveyId;
-    private Integer questionId;
+
+    @EmbeddedId
+    private AnswerId answerId;
+
+    @ManyToOne
+    @MapsId( "surveyId")
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
+
+    @ManyToOne
+    @MapsId( "questionId")
+    @JoinColumn(name = "question_id")
+    private Question question;
+
+    private String valorAnswer;
 
     public Answer(AnswerDTO answerDTO){
-        this.answerId = answerDTO.getAnswerId();
-        this.surveyId = answerDTO.getSurveyId();
-        this.questionId = answerDTO.getQuestionId();
+
+       // this.answerId.setAnswerId(answerDTO.getAnswerId());
+        this.answerId  = new AnswerId();
+        this.answerId.setAnswerId(answerDTO.getAnswerId());
+        this.answerId.setSurveyId(answerDTO.getSurveyId());
+        this.answerId.setQuestionId(answerDTO.getQuestionId());
+        this.valorAnswer = answerDTO.getValorAnswer();
+
+       // this.survey = answerDTO.
+        //this.question = answerDTO.getQuestionId();
     }
 }
